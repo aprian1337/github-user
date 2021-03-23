@@ -30,6 +30,7 @@
                     android:id="@+id/img_avatar"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:src="@drawable/user2"
                     />
             </androidx.cardview.widget.CardView>
 
@@ -43,16 +44,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tv_name"
-                    android:text="Jake Wharton"
+                    android:text="@string/name"
                     android:textSize="20sp"
                     android:fontFamily="@font/font_poppins_bold"
-                    android:textColor="@color/black"
+                    android:textColor="@color/orange_dark"
                     />
                 <TextView
                     android:id="@+id/tv_username"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Jake Wharton"
+                    android:text="@string/username"
                     android:textSize="14sp"
                     android:fontFamily="@font/font_poppins_italic"
                     />
@@ -60,7 +61,7 @@
                     android:id="@+id/tv_company"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Google Inc"
+                    android:text="@string/company"
                     android:fontFamily="@font/poppins_regular"
                     android:drawableLeft="@drawable/ic_baseline_work_24"
                     android:drawablePadding="5dp"

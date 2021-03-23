@@ -1,35 +1,35 @@
 package com.aprian1337.github_user
 
-import android.content.Intent
-import android.content.res.Resources
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.aprian1337.github_user.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
-    private lateinit var rvUser:RecyclerView
+    private lateinit var binding : ActivityMainBinding
     private var list: ArrayList<User> = arrayListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        binding = ActivityMainBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        rvUser = findViewById(R.id.rv_user)
+        setContentView(binding.root)
+        binding.rvUser.setHasFixedSize(true)
         list.addAll(getListHeroes())
         showRecyclerList()
     }
 
+    @SuppressLint("Recycle")
     fun getListHeroes(): ArrayList<User> {
         val dataName = resources.getStringArray(R.array.name)
         val dataUsername = resources.getStringArray(R.array.username)
         val dataLocation = resources.getStringArray(R.array.location)
-        val dataRepository = resources.getStringArray(R.array.repository)
+        val dataRepository = resources.getIntArray(R.array.repository)
         val dataCompany = resources.getStringArray(R.array.company)
-        val dataFollowers = resources.getStringArray(R.array.followers)
-        val dataFollowing = resources.getStringArray(R.array.following)
-        val dataAvatar = resources.getIntArray(R.array.avatar)
-
+        val dataFollowers = resources.getIntArray(R.array.followers)
+        val dataFollowing = resources.getIntArray(R.array.following)
+        val dataAvatar = resources.obtainTypedArray(R.array.avatar)
         val listHero = ArrayList<User>()
         for (position in dataName.indices) {
             val user = User(
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                 dataCompany[position],
                 dataFollowers[position],
                 dataFollowing[position],
-                dataAvatar[position],
+                dataAvatar.getResourceId(position, -1),
             )
             listHero.add(user)
         }
@@ -48,8 +48,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showRecyclerList() {
-        rvUser.layoutManager = LinearLayoutManager(this)
+        binding.rvUser.layoutManager = LinearLayoutManager(this)
         val listUserAdapter = ListUserAdapter(list)
-        rvUser.adapter = listUserAdapter
+        binding.rvUser.adapter = listUserAdapter
     }
 }
